@@ -30,14 +30,9 @@ function breedApi(firstLetter = '') {
         .then(json => {
             
             let dogHash = json.message
-            let dogBreeds
-            if (firstLetter === '') {
-                dogBreeds = Object.keys(dogHash)
-            } else {
-                dogBreeds = Object.keys(dogHash).filter(breed => {
-                    return breed[0] === firstLetter
-                })
-            }
+            let allBreeds = []
+            let dogBreeds = Object.keys(dogHash)
+         
 
             
             const dogList = document.getElementById('dog-breeds')
@@ -47,21 +42,25 @@ function breedApi(firstLetter = '') {
             // Apend li of each breed and subbreed to UL
             dogBreeds.forEach(breed => {
                 if (dogHash[breed].length === 0) {
-                    let li = document.createElement('li')
-                    li.innerText = breed
-                    dogList.appendChild(li) 
+                    allBreeds.push(breed)
                 } else {
                     dogHash[breed].forEach(subBreed => {
-                        console.log(subBreed)
-                        if (subBreed[0] === firstLetter || firstLetter === '') {
-                            let li = document.createElement('li')
-                            li.innerText = subBreed
-                            dogList.appendChild(li)
-                        } 
+                        allBreeds.push(subBreed)
                     })
                 }
                 
             })
+
+            
+            if (firstLetter !== '') {
+                allBreeds = allBreeds.filter(breed => breed[0] === firstLetter)
+            }
+
+            allBreeds.forEach(breed => {
+                let li = document.createElement('li')
+                li.innerText = breed
+                dogList.appendChild(li)
+        }) 
 
             // create event listener on each Li
             allLI = document.querySelectorAll('li')
