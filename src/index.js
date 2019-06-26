@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   fetchBreed()
   let selectDropdown = document.getElementById("breed-dropdown")
   selectDropdown.addEventListener("change", getFilteredBreeds )
-
-
-
 })
 
 function changeColor(event){
@@ -27,18 +24,16 @@ function fetchBreed(){
 function getBreedFromArray(breedObject, letter=false){
   console.log(letter)
   breedNames = breedObject
-
   let array = Object.keys(breedObject)
   array.forEach((entry) => {
     if(letter){
       if(entry.startsWith(letter)){
         listBreed(entry)
       }
-  }else {
-    listBreed(entry)
-  }
+    }else {
+      listBreed(entry)
+    }
   })
-
 }
 
 function listBreed(breedEntry){
@@ -48,8 +43,6 @@ function listBreed(breedEntry){
   li.innerText = breedEntry
   console.log(li)
   ulOfBreeds.appendChild(li)
-
-
 }
 
 function getFilteredBreeds(event){
@@ -58,15 +51,12 @@ function getFilteredBreeds(event){
   list = document.querySelector("#dog-breeds")
   list.innerHTML = ""
   getBreedFromArray(breedNames, letter)
-
-
 }
 
 function fetchImages () {
   fetch(imgUrl)
   .then(response => response.json())
   .then(data => getImagesFromArray(data.message))
-
 }
 
 function getImagesFromArray(data) {
