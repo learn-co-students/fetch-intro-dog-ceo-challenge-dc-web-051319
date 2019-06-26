@@ -1,14 +1,17 @@
-
+let dogContainer;
+let dogBreedList;
+    
 document.addEventListener("DOMContentLoaded", () => {
     dogContainer = document.getElementById("dog-image-container");
     dogBreedList = document.getElementById("dog-breeds");
-
+    breedDropDown = document.getElementById("breed-dropdown")
     fetchDogBreeds();
     fetchDogImages();
+
+    breedDropDown.addEventListener("change", () =>{
+        filterBreeds(breedDropDown.value);
+    })
 })
-    
-let dogContainer;
-let dogBreedList;
     
 function fetchDogImages() {
     fetch("https://dog.ceo/api/breeds/image/random/4")
@@ -37,7 +40,7 @@ function fetchDogBreeds() {
                 renderDogBreeds(breed, subBreeds);
             }
         })
-}
+};
     
 function renderDogBreeds(breed, subBreeds) {
     let breedListItem = document.createElement("li");
@@ -55,5 +58,7 @@ function renderDogBreeds(breed, subBreeds) {
             breedListItem.appendChild(subBreedList);
         }
         dogBreedList.appendChild(breedListItem);
-}
+};
     
+function filterBreeds(letter) {
+};
