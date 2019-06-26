@@ -40,6 +40,11 @@ function fetchBreeds() {
             li.innerText = key;
 
             breedPlacement.appendChild(li);
+
+            //even listener for each list item to change colors
+            li.addEventListener('click', function() {
+                li.style.color = 'red';
+            });
         }
     });
 };
