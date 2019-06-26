@@ -35,11 +35,17 @@ function showDogBreeds (breeds) {
   let dogBreeds = document.getElementById("dog-breeds")
   breedList = Object.keys(breeds)
   breedList.forEach( breed => {
-    let li = document.createElement('li')
-    li.className = 'dog-breed-li'
-    li.innerText = `${breed}`
-    li.addEventListener("click", changeColor)
-    dogBreeds.appendChild(li)
+
+// Add lines for and 41 to closed at 47 to show that we can filter the list with the right information
+
+    let l = breed.charAt(0)
+    if (l === "b") {
+      let li = document.createElement('li')
+      li.className = 'dog-breed-li'
+      li.innerText = `${breed}`
+      li.addEventListener("click", changeColor)
+      dogBreeds.appendChild(li)
+    }
   })
 }
 
