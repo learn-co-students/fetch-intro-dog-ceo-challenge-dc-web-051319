@@ -21,7 +21,6 @@ function fetchDogImages() {
 function renderDogImages(dogUrl) {
     let dogImage = document.createElement("img")
     dogImage.src = dogUrl
-    debugger
     dogContainer.appendChild(dogImage)
 }
     
@@ -43,16 +42,15 @@ function fetchDogBreeds() {
 function renderDogBreeds(breed, subBreeds) {
     let breedListItem = document.createElement("li")
     breedListItem.addEventListener("click", (event) => {
-        breedListItem.style.color.rand
+        breedListItem.style.color = 'green'
     })
     breedListItem.innerText = `${breed}`
         if (subBreeds.length > 0) {
             let subBreedList = document.createElement("ul")
-            subBreeds.forEach(subBreed => {
+            subBreeds.forEach( (subBreed) => {
                 let subBreedListItem = document.createElement("li")
                 subBreedListItem.innerText = subBreed
-                subBreedList.appendChild(breedListItem)
-                    debugger
+                subBreedList.append(subBreedListItem)
             })
             breedListItem.appendChild(subBreedList)
         }
