@@ -1,59 +1,59 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    dogContainer = document.getElementById("dog-image-container")
-    dogBreedList = document.getElementById("dog-breeds")
+    dogContainer = document.getElementById("dog-image-container");
+    dogBreedList = document.getElementById("dog-breeds");
 
-    fetchDogBreeds()
-    fetchDogImages()
+    fetchDogBreeds();
+    fetchDogImages();
 })
     
-let dogContainer
-let dogBreedList
+let dogContainer;
+let dogBreedList;
     
 function fetchDogImages() {
     fetch("https://dog.ceo/api/breeds/image/random/4")
         .then(response => response.json())
         .then(dogsArray => {
-            dogsArray.message.forEach((dog) => renderDogImages(dog))
+            dogsArray.message.forEach((dog) => renderDogImages(dog));
         })
-}
+};
     
-function renderDogImages(dogUrl) {
-    let dogImage = document.createElement("img")
-    dogImage.src = dogUrl
-    dogContainer.appendChild(dogImage)
-}
+function renderDogImages(dogURL) {
+    let dogImage = document.createElement("img");
+    dogImage.src = dogURL;
+    dogContainer.appendChild(dogImage);
+};
     
 function fetchDogBreeds() {
     fetch('https://dog.ceo/api/breeds/list/all')
         .then(response => response.json())
         .then(dogsObj => {
-            let breeds = dogsObj.message
+            let breeds = dogsObj.message;
             for (let breed in breeds) {
-                let subBreeds = []
+                let subBreeds = [];
                 if (breeds[breed].length > 0) {
-                    subBreeds = breeds[breed]
+                    subBreeds = breeds[breed];
                 }
-                renderDogBreeds(breed, subBreeds)
+                renderDogBreeds(breed, subBreeds);
             }
         })
 }
     
 function renderDogBreeds(breed, subBreeds) {
-    let breedListItem = document.createElement("li")
+    let breedListItem = document.createElement("li");
     breedListItem.addEventListener("click", (event) => {
-        breedListItem.style.color = 'green'
+        breedListItem.style.color = 'green';
     })
-    breedListItem.innerText = `${breed}`
+    breedListItem.innerText = `${breed}`;
         if (subBreeds.length > 0) {
-            let subBreedList = document.createElement("ul")
+            let subBreedList = document.createElement("ul");
             subBreeds.forEach( (subBreed) => {
-                let subBreedListItem = document.createElement("li")
-                subBreedListItem.innerText = subBreed
-                subBreedList.append(subBreedListItem)
+                let subBreedListItem = document.createElement("li");
+                subBreedListItem.innerText = subBreed;
+                subBreedList.append(subBreedListItem);
             })
-            breedListItem.appendChild(subBreedList)
+            breedListItem.appendChild(subBreedList);
         }
-        dogBreedList.appendChild(breedListItem)
+        dogBreedList.appendChild(breedListItem);
 }
     
