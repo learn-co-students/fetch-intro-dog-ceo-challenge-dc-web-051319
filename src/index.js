@@ -47,7 +47,8 @@ function renderDogBreeds(breed, subBreeds) {
     breedListItem.addEventListener("click", (event) => {
         breedListItem.style.color = 'green';
     })
-    breedListItem.innerText = `${breed}`;
+    breedListItem.innerText = breed;
+    breedListItem.id = breed;
         if (subBreeds.length > 0) {
             let subBreedList = document.createElement("ul");
             subBreeds.forEach( (subBreed) => {
@@ -61,4 +62,13 @@ function renderDogBreeds(breed, subBreeds) {
 };
     
 function filterBreeds(letter) {
+    for (let i = 0; i < dogBreedList.children.length; i++){
+        let breed = dogBreedList.children[i];
+        if (breed.id[0] !== letter) {
+            breed.style.display = "none";
+        }
+        else {
+            breed.style.display = "block";
+        }
+    };
 };
