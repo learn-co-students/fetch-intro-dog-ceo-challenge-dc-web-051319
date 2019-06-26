@@ -10,15 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     breedDropDown.addEventListener("change", () =>{
         filterBreeds(breedDropDown.value);
-    })
-})
+    });
+});
     
 function fetchDogImages() {
     fetch("https://dog.ceo/api/breeds/image/random/4")
         .then(response => response.json())
         .then(dogsArray => {
             dogsArray.message.forEach((dog) => renderDogImages(dog));
-        })
+        });
 };
     
 function renderDogImages(dogURL) {
@@ -36,17 +36,17 @@ function fetchDogBreeds() {
                 let subBreeds = [];
                 if (breeds[breed].length > 0) {
                     subBreeds = breeds[breed];
-                }
+                };
                 renderDogBreeds(breed, subBreeds);
-            }
-        })
+            };
+        });
 };
     
 function renderDogBreeds(breed, subBreeds) {
     let breedListItem = document.createElement("li");
     breedListItem.addEventListener("click", (event) => {
         breedListItem.style.color = 'green';
-    })
+    });
     breedListItem.innerText = breed;
     breedListItem.id = breed;
         if (subBreeds.length > 0) {
@@ -55,9 +55,9 @@ function renderDogBreeds(breed, subBreeds) {
                 let subBreedListItem = document.createElement("li");
                 subBreedListItem.innerText = subBreed;
                 subBreedList.append(subBreedListItem);
-            })
+            });
             breedListItem.appendChild(subBreedList);
-        }
+        };
         dogBreedList.appendChild(breedListItem);
 };
     
@@ -69,6 +69,6 @@ function filterBreeds(letter) {
         }
         else {
             breed.style.display = "block";
-        }
+        };
     };
 };
