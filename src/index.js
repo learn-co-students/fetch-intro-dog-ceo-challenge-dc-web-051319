@@ -45,7 +45,7 @@ function breedApi(firstLetter = '') {
                     allBreeds.push(breed)
                 } else {
                     dogHash[breed].forEach(subBreed => {
-                        allBreeds.push(subBreed)
+                        allBreeds.push(`${breed}: ${subBreed}`)
                     })
                 }
                 
