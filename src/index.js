@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchDogs();
 
   // Filter by Select Menu
-  document.addEventListener('input', (e) => {
+  let filter = document.getElementById('breed-dropdown')
+  filter.addEventListener('change', (e) => {
     letter = e.target.value
     filterItems(letter)
   })
